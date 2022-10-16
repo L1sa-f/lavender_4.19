@@ -65,7 +65,8 @@ DEVICE="lavender"
 
 # The defconfig which should be used. Get it from config.gz from
 # your device or check source
-DEFCONFIG=lavender_defconfig
+DEFCONFIG=vendor/xiaomi/sdm660_defconfig
+CONFIG=vendor/xiaomi/lavender.config
 
 # Specify compiler. 
 # 'clang' | 'gcc' 
@@ -270,7 +271,7 @@ build_kernel() {
 		tg_post_msg "<b>$KBUILD_BUILD_VERSION CI Build Triggered</b>%0A<b>Docker OS: </b><code>$DISTRO</code>%0A<b>Kernel Version : </b><code>$KERVER</code>%0A<b>Date : </b><code>$(TZ=Asia/Jakarta date)</code>%0A<b>Device : </b><code>$MODEL [$DEVICE]</code>%0A<b>Pipeline Host : </b><code>$KBUILD_BUILD_HOST</code>%0A<b>Host Core Count : </b><code>$PROCS</code>%0A<b>Compiler Used : </b><code>$KBUILD_COMPILER_STRING</code>%0A<b>Linker : </b><code>$LINKER</code>%0a<b>Branch : </b><code>$CI_BRANCH</code>%0A<b>Top Commit : </b><code>$COMMIT_HEAD</code>%0A<a href='$SERVER_URL'>Link</a>"
 	fi
 
-	make O=out $DEFCONFIG
+	make O=out $DEFCONFIG $CONFIG
 	if [ $DEF_REG = 1 ]
 	then
 		cp .config arch/arm64/configs/$DEFCONFIG
