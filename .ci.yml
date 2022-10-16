@@ -1,0 +1,14 @@
+--- 
+clone: 
+  depth: 1
+kind: pipeline
+name : Lain erofs
+version: Lain-erofs
+steps:
+ - name: Lain
+   image: fadlyas/kernel_dockerfile
+   environment:
+     token:
+       from_secret: token
+   commands:
+     - bash kernel.sh
